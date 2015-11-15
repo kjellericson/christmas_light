@@ -6,7 +6,7 @@
 struct rgb {
   int r, g, b;
 };
-extern struct rgb buffer[MAXLEDS];
+extern struct rgb ledbuffer[MAXLEDS];
 
 void flushbuffer();
 void ledcontrol_init();

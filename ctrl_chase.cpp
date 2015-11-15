@@ -16,13 +16,13 @@ void fillinchase(float ir, int rgb)
     for (i = 0; i < 4; i++) {
       switch (rgb) {
       case 1:
-	buffer[pos].r = brightness;
+	ledbuffer[pos].r = brightness;
 	break;
       case 2:
-	buffer[pos].g = brightness;
+	ledbuffer[pos].g = brightness;
 	break;
       case 0:
-	buffer[pos].b = brightness;
+	ledbuffer[pos].b = brightness;
 	break;
       }
       pos++;
@@ -33,13 +33,13 @@ void fillinchase(float ir, int rgb)
     for (i = 0; i < 5; i++) {
       switch (rgb) {
       case 1:
-	buffer[pos].r = brightness;
+	ledbuffer[pos].r = brightness;
 	break;
       case 2:
-	buffer[pos].g = brightness;
+	ledbuffer[pos].g = brightness;
 	break;
       case 0:
-	buffer[pos].b = brightness;
+	ledbuffer[pos].b = brightness;
 	break;
       }
       pos++;
