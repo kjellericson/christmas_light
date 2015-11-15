@@ -1,8 +1,8 @@
 
 CC=g++
 CFLAGS=-I.
-DEPS = main.c
-OBJ = main.o
+DEPS = main.c ledcontrol.c ctrl_chase.c
+OBJ = $(DEPS:.c=.o)
 TARGET = christmas_light
 
 all: $(TARGET)
