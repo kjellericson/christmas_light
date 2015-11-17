@@ -12,13 +12,15 @@ class RedWaveMode
 {
   private:
     int count;
+  int mode;
   public:
-    RedWaveMode(int pCount);
+  RedWaveMode(int pCount, int pMode);
     void loop(struct rgb *leds);
     void init();
 };
 
-RedWaveMode::RedWaveMode(int pCount){
+RedWaveMode::RedWaveMode(int pCount, int pMode){
+  mode = pMode;
   count = pCount;
 }
 void RedWaveMode::init(){
@@ -37,19 +39,19 @@ void RedWaveMode::loop(struct rgb *leds){
         leds[whiteLed].b = 252;
         
       } else {
-        leds[whiteLed].r = constrain(v, 0, 255);
-        leds[whiteLed].g = 0;
-        leds[whiteLed].b = 0;
+        leds[whiteLed].r = mode == 0 ? constrain(v, 0, 255) : 0;
+        leds[whiteLed].g = mode == 1 ? constrain(v, 0, 255) : 0;
+        leds[whiteLed].b = mode == 2 ? constrain(v, 0, 255) : 0;
       }
    }
 }
 
-void ctrl_redwave(int secs)
+void ctrl_redwave(int secs, int mode)
 {
   int nsdelay = 1000000/60;
   time_t start = time(NULL);
   time_t now;
-  RedWaveMode red(MAXLEDS);
+  RedWaveMode red(MAXLEDS, mode);
   red.init();
 
   time(&start);
