@@ -42,9 +42,16 @@ int main()
 
   ledcontrol_init();
 
+  printf("Redwave\n");
   ctrl_redwave(30);
+
+  printf("Chase\n");
   ctrl_chase(10);
+
+  printf("Icecrystals\n");
   ctrl_icecrystals(30);
+
+  printf("Traditional\n");
   ctrl_traditional(30);
   clear();
   return 0;

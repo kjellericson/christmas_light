@@ -60,8 +60,6 @@ void ctrl_chase(int secs)
   time_t start = time(NULL);
   time_t now;
 
-  printf("Chase start\n");
-
   while (1) {
     fillinchase(ir, 0);
     fillinchase(ig, 1);
