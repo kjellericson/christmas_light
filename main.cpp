@@ -5,12 +5,13 @@
 #include <signal.h>
 #include "ledcontrol.h"
 
-extern void ctrl_chase();
-extern void ctrl_icecrystals();
+extern void ctrl_chase(int secs);
+extern void ctrl_icecrystals(int secs);
+extern void ctrl_traditional(int secs);
+extern void ctrl_redwave(int secs);
 
-void signal_handler(int s)
+void clear()
 {
-  printf("Caught signal %d\n",s);
   int i;
   for (i = 0; i < MAXLEDS; i++) {
     ledbuffer[i].r = 0;
@@ -18,7 +19,13 @@ void signal_handler(int s)
     ledbuffer[i].b = 0;
   }
   flushbuffer();
-  usleep(100);
+  usleep(200);
+}
+
+void signal_handler(int s)
+{
+  printf("Caught signal %d\n",s);
+  clear();
   exit(0);
 }
 
@@ -35,7 +42,10 @@ int main()
 
   ledcontrol_init();
 
-  //  ctrl_chase();
-  ctrl_icecrystals();
+  ctrl_redwave(30);
+  ctrl_chase(10);
+  ctrl_icecrystals(30);
+  ctrl_traditional(30);
+  clear();
   return 0;
 }
