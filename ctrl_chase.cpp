@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <unistd.h>
+#include <time.h>
 #include "ledcontrol.h"
 
 int nsdelay = 1000000/60;
@@ -50,12 +51,15 @@ void fillinchase(float ir, int rgb)
 }
 
 
-void ctrl_chase()
+void ctrl_chase(int secs)
 {
   float ir = 0;
   float ig = 0;
   float igc = 0;
   float ib = 0;
+  time_t start = time(NULL);
+  time_t now;
+
   printf("Chase start\n");
 
   while (1) {
@@ -76,6 +80,11 @@ void ctrl_chase()
       ib -= MAXLEDS;
     if (ib < 0)
       ib += MAXLEDS;
+
+    now = time(NULL);
+    if (start + secs < now)
+      break;
+
     usleep(nsdelay);
   }
 }

@@ -1,8 +1,13 @@
+// From MashedPixels project
+// Mathieu is the name of my 4yo son. He designed this effect. It's a rainbow oscillating between each side of the led strip.
+
 #include <stdlib.h>
 #include <math.h>
 #include <unistd.h>
+#include <time.h>
 #include <sys/time.h>
 #include "ledcontrol.h"
+#include "arduino.h"
 
 #define ICE_COUNT 10
 
@@ -13,22 +18,6 @@ enum ice_state {
   ICE_SLEEPING
 };
 
-long millis()
-{
-  struct timeval ts;
-  gettimeofday(&ts, NULL);
-  long ms = ts.tv_sec*1000 + ts.tv_usec;
-  return ms;
-}
-
-int constrain(int val, int min, int max)
-{
-  if (val < min)
-    return min;
-  if (val > max)
-    return max;
-  return val;
-}
 
 struct ice_data{
   double position;
@@ -51,11 +40,6 @@ class IceCrystalsMode{
     void loop(struct rgb *leds);
     void init();
 };
-
-int random(int min, int max)
-{
-  return (rand()%(max-min))+min;
-}
 
 IceCrystalsMode::IceCrystalsMode( int pCount){
   count = pCount;
@@ -149,15 +133,21 @@ void IceCrystalsMode::loop(struct rgb *leds){
   }
 }
 
-void ctrl_icecrystals()
+void ctrl_icecrystals(int secs)
 {
   int nsdelay = 1000000/60;
+  time_t start = time(NULL);
+  time_t now;
   IceCrystalsMode ice(MAXLEDS);
   ice.init();
 
+  time(&start);
   while (1) {
     ice.loop(&ledbuffer[0]);
     flushbuffer();
+    now = time(NULL);
+    if (start + secs < now)
+      break;
     usleep(nsdelay);
   }
 }
