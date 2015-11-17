@@ -27,6 +27,16 @@ TraditionalMode::TraditionalMode(int pCount){
 void TraditionalMode::init(){
 
 }
+
+int moveTo(int now, int want)
+{
+  if (now < want)
+    now++;
+  if (now > want)
+    now--;
+  return now;
+}
+
 void TraditionalMode::loop(struct rgb *leds){
    int colors[] = {
                               255,0,0,
@@ -36,15 +46,15 @@ void TraditionalMode::loop(struct rgb *leds){
                             };
   for (int a=0;a<count;a++){
     int step = (a + move)%4;
-    if((time(NULL)%2)==0){
-      leds[a].r = colors[step*3];
-      leds[a].g = colors[step*3+1];
-      leds[a].b = colors[step*3+2];
+    if((time(NULL)%4)==0){
+      leds[a].r = moveTo(leds[a].r, colors[step*3]);
+      leds[a].g = moveTo(leds[a].g, colors[step*3+1]);
+      leds[a].b = moveTo(leds[a].b, colors[step*3+2]);
       domove = 0;
     } else {
-      leds[a].r = colors[step*3]/20;
-      leds[a].g = colors[step*3+1]/20;
-      leds[a].b = colors[step*3+2]/20;
+      leds[a].r = moveTo(leds[a].r, colors[step*3]/20);
+      leds[a].g = moveTo(leds[a].g, colors[step*3+1]/20);
+      leds[a].b = moveTo(leds[a].b, colors[step*3+2]/20);
       if (domove == 0)
         domove = 1;
     }
