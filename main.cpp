@@ -8,7 +8,7 @@
 extern void ctrl_chase(int secs);
 extern void ctrl_icecrystals(int secs);
 extern void ctrl_traditional(int secs);
-extern void ctrl_redwave(int secs);
+extern void ctrl_redwave(int secs, int mode);
 
 void clear()
 {
@@ -41,18 +41,22 @@ int main()
   sigaction(SIGINT, &sigIntHandler, NULL);
 
   ledcontrol_init();
+  while (1) {
+    printf("Redwave\n");
+    ctrl_redwave(15, 0);
+    ctrl_redwave(15, 1);
+    ctrl_redwave(15, 2);
 
-  printf("Redwave\n");
-  ctrl_redwave(30);
+    printf("Traditional\n");
+    ctrl_traditional(30);
 
-  printf("Chase\n");
-  ctrl_chase(10);
+    printf("Chase\n");
+    ctrl_chase(10);
 
-  printf("Icecrystals\n");
-  ctrl_icecrystals(30);
+    printf("Icecrystals\n");
+    ctrl_icecrystals(30);
+  }
 
-  printf("Traditional\n");
-  ctrl_traditional(30);
   clear();
   return 0;
 }
