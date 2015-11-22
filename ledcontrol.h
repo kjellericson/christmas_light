@@ -12,5 +12,6 @@ void flushbuffer();
 void ledcontrol_init();
 
 void fade();
+void fade_out();
 
 #endif

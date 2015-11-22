@@ -66,7 +66,8 @@ int main()
   //  printf("Icecrystals\n");
   // ctrl_icecrystals(30);
 
+  fade_out();
   clear();
-  clear();
+
   return 0;
 }

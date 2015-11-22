@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <memory.h>
 #include "ledcontrol.h"
 FILE *spidev;
@@ -42,4 +43,20 @@ void fade()
 {
   fading = 1;
   memcpy(fadebuffer, ledbuffer, sizeof(ledbuffer));
+}
+
+void fade_out()
+{
+  fade();
+  for (int i = 0; i < MAXLEDS; i++) {
+    ledbuffer[i].r = 0;
+    ledbuffer[i].g = 0;
+    ledbuffer[i].b = 0;
+  }
+
+  while (fading >= 0) {
+    int nsdelay = 1000000/60;
+    flushbuffer();
+    usleep(nsdelay);
+  }
 }
