@@ -11,37 +11,46 @@
 class RedWaveMode
 {
   private:
-    int count;
+  int count;
   int mode;
+  bool change_direction;
+
   public:
   RedWaveMode(int pCount, int pMode);
-    void loop(struct rgb *leds);
-    void init();
+  void loop(struct rgb *leds);
+  void init();
 };
 
 RedWaveMode::RedWaveMode(int pCount, int pMode){
   mode = pMode;
   count = pCount;
 }
-void RedWaveMode::init(){
+void RedWaveMode::init()
+{
+  change_direction = ((millis()/10) & 1) ? true : false;
 }
+
 void RedWaveMode::loop(struct rgb *leds){
    struct rgb color;
 
    int last=-100;
-   for(int whiteLed = 0; whiteLed < count; whiteLed = whiteLed + 1) {
+   for(int i = 0; i < count; i++) {
+     int led = i;
+     if (change_direction)
+       led = count - 1 - i;
+
       // Turn our current led on to white, then show the leds
-     double v = sin(whiteLed*0.3+millis()/1000.0)*255;
-     if (0 && v>240 && random(0,100)>98 && whiteLed - last > 10){
-       last = whiteLed;
-       leds[whiteLed].g = 250;
-       leds[whiteLed].r = 255;
-       leds[whiteLed].b = 252;
+     double v = sin(i*0.3+millis()/1000.0)*255;
+     if (0 && v>240 && random(0,100)>98 && led - last > 10){
+       last = led;
+       leds[led].g = 250;
+       leds[led].r = 255;
+       leds[led].b = 252;
        
      } else {
-       leds[whiteLed].r = mode == 0 ? constrain(v, 0, 255) : 0;
-       leds[whiteLed].g = mode == 1 ? constrain(v, 0, 255) : 0;
-       leds[whiteLed].b = mode == 2 ? constrain(v, 0, 255) : 0;
+       leds[led].r = mode == 0 ? constrain(v, 0, 255) : 0;
+       leds[led].g = mode == 1 ? constrain(v, 0, 255) : 0;
+       leds[led].b = mode == 2 ? constrain(v, 0, 255) : 0;
      }
    }
 }
