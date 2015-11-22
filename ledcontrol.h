@@ -11,4 +11,6 @@ extern struct rgb ledbuffer[MAXLEDS];
 void flushbuffer();
 void ledcontrol_init();
 
+void fade();
+
 #endif

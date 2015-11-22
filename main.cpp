@@ -41,22 +41,32 @@ int main()
   sigaction(SIGINT, &sigIntHandler, NULL);
 
   ledcontrol_init();
-  while (1) {
-    printf("Redwave\n");
-    ctrl_redwave(15, 0);
-    ctrl_redwave(15, 1);
-    ctrl_redwave(15, 2);
+  fade();
 
-    printf("Traditional\n");
-    ctrl_traditional(30);
+  printf("Redwave\n");
+  ctrl_redwave(25, 0);
+  fade();
+  
+  printf("Traditional\n");
+  ctrl_traditional(30);
+  fade();
 
-    printf("Chase\n");
-    ctrl_chase(10);
+  printf("Greenwave\n");
+  ctrl_redwave(25, 1);
+  fade();
 
-    printf("Icecrystals\n");
-    ctrl_icecrystals(30);
-  }
+  printf("Chase\n");
+  ctrl_chase(10);
+  fade();
 
+  printf("Bluewave\n");
+  ctrl_redwave(25, 2);
+  fade();
+
+  printf("Icecrystals\n");
+  ctrl_icecrystals(30);
+
+  clear();
   clear();
   return 0;
 }
