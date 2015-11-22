@@ -32,17 +32,17 @@ void RedWaveMode::loop(struct rgb *leds){
    for(int whiteLed = 0; whiteLed < count; whiteLed = whiteLed + 1) {
       // Turn our current led on to white, then show the leds
      double v = sin(whiteLed*0.3+millis()/1000.0)*255;
-      if (v>240 && random(0,100)>98 && whiteLed - last > 10){
-        last = whiteLed;
-        leds[whiteLed].g = 250;
-        leds[whiteLed].r = 255;
-        leds[whiteLed].b = 252;
-        
-      } else {
-        leds[whiteLed].r = mode == 0 ? constrain(v, 0, 255) : 0;
-        leds[whiteLed].g = mode == 1 ? constrain(v, 0, 255) : 0;
-        leds[whiteLed].b = mode == 2 ? constrain(v, 0, 255) : 0;
-      }
+     if (0 && v>240 && random(0,100)>98 && whiteLed - last > 10){
+       last = whiteLed;
+       leds[whiteLed].g = 250;
+       leds[whiteLed].r = 255;
+       leds[whiteLed].b = 252;
+       
+     } else {
+       leds[whiteLed].r = mode == 0 ? constrain(v, 0, 255) : 0;
+       leds[whiteLed].g = mode == 1 ? constrain(v, 0, 255) : 0;
+       leds[whiteLed].b = mode == 2 ? constrain(v, 0, 255) : 0;
+     }
    }
 }
 

@@ -25,7 +25,7 @@ void flushbuffer()
   }
   fflush(spidev);
   if (fading > 0) {
-    fading -= 0.02;
+    fading -= 0.01;
   }
 }
 

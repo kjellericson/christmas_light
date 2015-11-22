@@ -63,8 +63,8 @@ int main()
   ctrl_redwave(25, 2);
   fade();
 
-  printf("Icecrystals\n");
-  ctrl_icecrystals(30);
+  //  printf("Icecrystals\n");
+  // ctrl_icecrystals(30);
 
   clear();
   clear();
