@@ -9,6 +9,7 @@ extern void ctrl_chase(int secs);
 extern void ctrl_icecrystals(int secs);
 extern void ctrl_traditional(int secs);
 extern void ctrl_redwave(int secs, int mode);
+extern void ctrl_twocolorwave(int secs, struct rgb background, struct rgb wave);
 
 void clear()
 {
@@ -43,6 +44,14 @@ int main()
   ledcontrol_init();
   fade();
 
+  printf("Two color wave\n");
+  {
+    struct rgb bg = {0,64,0};
+    struct rgb fg = {255,0,0};
+    ctrl_twocolorwave(25, bg, fg);
+    fade();
+  }
+  
   printf("Redwave\n");
   ctrl_redwave(25, 0);
   fade();
@@ -55,6 +64,14 @@ int main()
   ctrl_redwave(25, 1);
   fade();
 
+  printf("Two color wave\n");
+  {
+    struct rgb bg = {128,0,0};
+    struct rgb fg = {0,0,255};
+    ctrl_twocolorwave(25, bg, fg);
+    fade();
+  }
+  
   printf("Chase\n");
   ctrl_chase(10);
   fade();
