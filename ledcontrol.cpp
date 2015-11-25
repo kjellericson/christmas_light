@@ -9,11 +9,11 @@ struct rgb ledbuffer[MAXLEDS];
 struct rgb fadebuffer[MAXLEDS];
 double fading = 0;
 
-int calc_fade(double fading, int a, int b)
+int calc_fade(double fading, int fade1, int fade0)
 {
   if (fading <= 0)
-    return b;
-  return (a * fading) + (b * (1-fading)); 
+    return fade0;
+  return (fade1 * fading) + (fade0 * (1-fading)); 
 }
 
 void flushbuffer()

@@ -10,7 +10,9 @@ extern struct rgb ledbuffer[MAXLEDS];
 
 void flushbuffer();
 void ledcontrol_init();
-int calc_fade(double fading, int a, int b);
+
+// Mix values. If fade = 1 then more of fade1-color
+int calc_fade(double fading, int fade1, int fade0);
 
 void fade();
 void fade_out();
