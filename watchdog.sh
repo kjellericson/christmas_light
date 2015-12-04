@@ -4,6 +4,7 @@
 
 while true
 do
+  sudo ./clear_leds 
   ./timercontrol.sh
 
 # Wait between run

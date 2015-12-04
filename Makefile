@@ -1,17 +1,25 @@
 
 CC=g++
 CFLAGS = -I.
-DEPS = main.cpp arduino.cpp ledcontrol.cpp ctrl_chase.cpp ctrl_icecrystals.cpp \
-	ctrl_traditional.cpp ctrl_redwave.cpp ctrl_twocolorwave.cpp
-OBJ = $(DEPS:.cpp=.o)
-TARGET = christmas_light
+CL_DEPS = main.cpp arduino.cpp ledcontrol.cpp ctrl_chase.cpp \
+	ctrl_traditional.cpp ctrl_redwave.cpp ctrl_twocolorwave.cpp \
+	ctrl_icecrystals.cpp
+CL OBJ = $(CL_DEPS:.cpp=.o)
+CL_TARGET = christmas_light clear_leds.cpp
 
-all: $(TARGET)
+CLEAR_TARGET = clear_leds
+CLEAR_DEPS = clear_leds.cpp ledcontrol.cpp
+CLEAR_OBJ = $(CLEAR_DEPS:.cpp=.o)
+
+all: $(CL_TARGET) $(CLEAR_TARGET)
 
 %.o: %.cpp
 	$(CC) -c $(CFLAGS) -o $@ $<
 
-$(TARGET): $(OBJ)
+$(CL_TARGET): $(CL_OBJ)
+	$(CC) $(CFLAGS) -o $@ $^
+
+$(CLEAR_TARGET): $(CLEAR_OBJ)
 	$(CC) $(CFLAGS) -o $@ $^
 
 clean:
