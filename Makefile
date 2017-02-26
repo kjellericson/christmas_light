@@ -4,7 +4,7 @@ CFLAGS = -I.
 CL_DEPS = main.cpp arduino.cpp ledcontrol.cpp ctrl_chase.cpp \
 	ctrl_traditional.cpp ctrl_redwave.cpp ctrl_twocolorwave.cpp \
 	ctrl_icecrystals.cpp
-CL OBJ = $(CL_DEPS:.cpp=.o)
+CL_OBJ = $(CL_DEPS:.cpp=.o)
 CL_TARGET = christmas_light clear_leds.cpp
 
 CLEAR_TARGET = clear_leds
