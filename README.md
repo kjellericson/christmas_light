@@ -7,6 +7,16 @@ What I want to do is some nice christmas lightning when it hangs outside my hous
 
 Some code is borrowed/stolen from an arduino projects I found called MashedPixels
 
+HARDWARE
+I have connected these pins to my WS2801 lamps:
+PIN 6  - GROUND
+PIN 19 - GPIO10 (SPI_MOSI) is connected to DI
+PIN 21 - GPIO11 (SPI_CLK) is connected to CI
+
+The power to the WS2801 comes from seperate USB power.
+
+Don't forget to enable SPI with "sudo raspi-config".  It is turned off by default.
+
 ------------------------------
 MashedPixels note:
 
