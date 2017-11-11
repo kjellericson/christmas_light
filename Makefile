@@ -5,7 +5,7 @@ CL_DEPS = main.cpp arduino.cpp ledcontrol.cpp ctrl_chase.cpp \
 	ctrl_traditional.cpp ctrl_redwave.cpp ctrl_twocolorwave.cpp \
 	ctrl_icecrystals.cpp
 CL_OBJ = $(CL_DEPS:.cpp=.o)
-CL_TARGET = christmas_light clear_leds.cpp
+CL_TARGET = christmas_light
 
 CLEAR_TARGET = clear_leds
 CLEAR_DEPS = clear_leds.cpp ledcontrol.cpp
