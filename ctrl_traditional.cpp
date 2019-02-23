@@ -68,7 +68,7 @@ void TraditionalMode::loop(struct rgb *leds){
 void ctrl_traditional(int secs)
 {
   TraditionalMode tm(MAXLEDS);
-  int nsdelay = 1000000/60;
+  int nsdelay = 2000000/60;
 
   time_t start = time(NULL);
   time_t now;

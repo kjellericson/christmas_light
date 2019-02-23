@@ -8,7 +8,7 @@ CL_OBJ = $(CL_DEPS:.cpp=.o)
 CL_TARGET = christmas_light
 
 CLEAR_TARGET = clear_leds
-CLEAR_DEPS = clear_leds.cpp ledcontrol.cpp
+CLEAR_DEPS = clear_leds.cpp ledcontrol.cpp arduino.cpp
 CLEAR_OBJ = $(CLEAR_DEPS:.cpp=.o)
 
 all: $(CL_TARGET) $(CLEAR_TARGET)

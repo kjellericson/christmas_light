@@ -5,7 +5,7 @@
 #include <time.h>
 #include "ledcontrol.h"
 
-int nsdelay = 1000000/60;
+int nsdelay = 2000000/60;
 
 void fillinchase(float ir, int rgb)
 {

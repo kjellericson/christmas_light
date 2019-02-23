@@ -53,7 +53,7 @@ void TwoColorWave::loop(struct rgb *leds){
 
 void ctrl_twocolorwave(int secs, struct rgb background, struct rgb wave)
 {
-  int nsdelay = 1000000/60;
+  int nsdelay = 2000000/60;
   time_t start = time(NULL);
   time_t now;
   TwoColorWave red(MAXLEDS);

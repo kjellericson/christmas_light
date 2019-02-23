@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include <math.h>
 #include <unistd.h>
 #include <signal.h>
@@ -31,7 +32,7 @@ void signal_handler(int s)
 }
 
 
-int main()
+int main(int argc, char **argv)
 {
   struct sigaction sigIntHandler;
   
@@ -43,6 +44,10 @@ int main()
 
   ledcontrol_init();
   fade();
+  if (argc > 1 && strcmp(argv[1], "whiteoverlay") == 0) {
+    printf("Turn whiteoverlay on.\n");
+    whiteoverlay(true);
+  }
 
   printf("Two color wave\n");
   {

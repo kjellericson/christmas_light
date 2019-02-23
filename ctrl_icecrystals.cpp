@@ -135,7 +135,7 @@ void IceCrystalsMode::loop(struct rgb *leds){
 
 void ctrl_icecrystals(int secs)
 {
-  int nsdelay = 1000000/60;
+  int nsdelay = 2000000/60;
   time_t start = time(NULL);
   time_t now;
   IceCrystalsMode ice(MAXLEDS);

@@ -57,7 +57,7 @@ void RedWaveMode::loop(struct rgb *leds){
 
 void ctrl_redwave(int secs, int mode)
 {
-  int nsdelay = 1000000/60;
+  int nsdelay = 2000000/60;
   time_t start = time(NULL);
   time_t now;
   RedWaveMode red(MAXLEDS, mode);

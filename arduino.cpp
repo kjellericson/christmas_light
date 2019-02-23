@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
-long millis()
+unsigned long millis()
 {
   struct timeval ts;
   gettimeofday(&ts, NULL);
